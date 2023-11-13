@@ -28,7 +28,7 @@ class PackageService {
     {
         $user = User::find(Auth::id());
 
-        if ($package->limit > $package->registrations->count()) {
+        if (!($package->limit > $package->registrations->count())) {
             throw new UnauthorizedException('This is not available');
         }
 
