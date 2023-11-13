@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 
 class AuthService {
@@ -28,9 +29,7 @@ class AuthService {
         $user = User::where('email', $request['email'])->firstOrFail();
 
         if (!Hash::check($request['password'], $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+           throw new UnauthorizedException('The provided credentials are incorrect.');
         }
 
         $token = $user->createToken(config('auth.secret_key'))->plainTextToken;
