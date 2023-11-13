@@ -24,4 +24,12 @@ class Package extends Model
         $this->attributes['uuid'] = Uuid::uuid4()->toString();
     }
 
+    public function getIsAvailableAttribute() {
+        return $this->limit > $this->registrations->count();
+    }
+
+    public function registrations()
+    {
+        return $this->belongsToMany(User::class, 'registrations')->withTimestamps();
+    }
 }

@@ -51,4 +51,10 @@ class User extends Authenticatable
     public function setUuidAttribute(){
         $this->attributes['uuid'] = Uuid::uuid4()->toString();
     }
+
+    public function registrations()
+    {
+        return $this->belongsToMany(Package::class, 'registrations')->withPivot('uuid')
+            ->withTimestamps();
+    }
 }

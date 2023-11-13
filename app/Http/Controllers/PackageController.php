@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PackageRequest;
 use App\Http\Services\PackageService;
+use App\Models\Package;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PackageController extends Controller
 {
@@ -24,5 +26,10 @@ class PackageController extends Controller
     public function store(PackageRequest $request)
     {
         return $this->packageService->create($request->validated());
+    }
+
+    public function register(Package $package)
+    {
+        return $this->packageService->register($package);
     }
 }

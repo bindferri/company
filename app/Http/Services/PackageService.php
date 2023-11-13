@@ -4,8 +4,9 @@ namespace App\Http\Services;
 
 use App\Models\Package;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\UnauthorizedException;
+use Ramsey\Uuid\Uuid;
 
 class PackageService {
 
@@ -19,7 +20,21 @@ class PackageService {
     {
         $package = Package::create($request);
 
-        return response(['id' => $package->id], 201);
+        return response(['data' => $package->id], 201);
+    }
+
+    public function register(Package $package)
+    {
+        $user = User::find(Auth::id());
+
+        if (!$package->limit) {
+            throw new UnauthorizedException('This is not available');
+        }
+
+        $registration = $user->registrations()->attach($package->id,
+            ['uuid' => Uuid::uuid4()->toString()
+        ]);
+        return response()->json(['data' => true]);
     }
 
 }
