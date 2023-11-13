@@ -26,5 +26,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::prefix('/packages')->middleware('auth:sanctum')->group(function (){
     Route::get('/', [PackageController::class, 'index']);
     Route::post('/', [PackageController::class, 'store']);
-    Route::get('/register/{package}', [PackageController::class, 'register']);
+    Route::post('/register/{package}', [PackageController::class, 'register']);
 });
