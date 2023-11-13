@@ -18,6 +18,8 @@ return [
         'passwords' => 'users',
     ],
 
+    'secret_key' => env('SECRET_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
