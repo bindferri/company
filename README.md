@@ -1,4 +1,4 @@
-[Company]
+<b>COMPANY</b>
 
 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -16,25 +16,25 @@ A step-by-step series of examples that tell you how to get a development environ
 Step 1: Clone the Repository
 To clone the repository, run the following command in your terminal:
 
-git clone https://github.com/your-username/company.git
+<b>git clone https://github.com/your-username/company.git</b>
 
 Navigate to the project directory:
-cd your-project-name
+<b>cd your-project-name</b>
 
 
 Step 2: Install Dependencies
 Install all Composer dependencies:
-composer install
+<b>composer install</b>
 
 Step 3: Set Up Environment
 Copy the .env.example file to create your own environment file:
-cp .env.example .env
+<b>cp .env.example .env</b>
 Edit the .env file with your database credentials and any other necessary configurations.
 
 Step 4: Generate Application Key
 Generate a new application key. This will be used for session and data encryption:
-php artisan key:generate
+<b>php artisan key:generate</b>
 
 Step 5: Migrate the Database
 Run the database migrations. This will set up your database schema:
-php artisan migrate
+<b>php artisan migrate</b>
