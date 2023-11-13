@@ -6,12 +6,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
+use Ramsey\Uuid\Uuid;
 
 class AuthService {
 
 
     public function register(array $request)
     {
+        $request['uuid'] = Uuid::uuid4()->toString();
         $user = User::create($request);
 
         $token = $user->createToken(config('auth.secret_key'))->plainTextToken;

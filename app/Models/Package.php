@@ -19,11 +19,6 @@ class Package extends Model
     protected $appends = ['is_available'];
 
 
-    public function setUuidAttribute()
-    {
-        $this->attributes['uuid'] = Uuid::uuid4()->toString();
-    }
-
     public function getIsAvailableAttribute() {
         return $this->limit > $this->registrations->count();
     }

@@ -18,6 +18,7 @@ class PackageService {
 
     public function create(array $request)
     {
+        $request['uuid'] = Uuid::uuid4()->toString();
         $package = Package::create($request);
 
         return response(['data' => $package->id], 201);
